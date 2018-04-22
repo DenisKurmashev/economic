@@ -1,0 +1,78 @@
+/* Includes fonts */
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,500,600,700');
+
+* {
+    font-family: 'Raleway', sans-serif;
+}
+
+.nav-wrapper {
+    background-color: #007AFF;
+}
+
+.nav-wrapper .brand-logo img {
+    width: 300px;
+    height: 64px;
+    margin-top: 3px; 
+}
+
+.start-screen {
+    min-height: 500px;
+    width: 100%;
+    background-image: url(../img/hotel.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-origin: initial;
+    background-clip: initial;
+    background-size: cover;
+    padding-top: 50px;
+}
+
+.start-screen .form-search {
+    margin-top: 100px;
+    font-weight: bold;
+}
+
+.start-screen .form-search input[type='text'] {
+    background-color: white;
+    padding-left: 10px;
+    border-radius: 5px;
+}
+
+.start-screen .form-search input[type='text']::placeholder {
+    color: rgb(0, 0, 0);
+}
+
+.start-screen .form-search input[type='button'] {
+    height: 46px;
+    background-color: #007AFF;
+    color: white;
+    border: 0px;
+    border-radius: 5px;
+}
+
+.advantage {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+
+
+.advantage p {
+    font-size: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.page-footer {
+    background-color: #007AFF;
+}
