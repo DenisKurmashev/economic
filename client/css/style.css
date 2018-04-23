@@ -10,9 +10,9 @@
 }
 
 .nav-wrapper .brand-logo img {
-    width: 300px;
+    width: 150px;
     height: 64px;
-    margin-top: 3px; 
+    margin-left: 100px;
 }
 
 .start-screen {
@@ -51,19 +51,62 @@
 }
 
 .advantage {
-    padding-top: 50px;
+    padding-top: 20px;
     padding-bottom: 50px;
 }
 
-
+.advantage h2 {
+    margin-bottom: 50px;
+}
 
 .advantage p {
     font-size: 20px;
 }
 
+.more-about-hilton {
+    padding: 20px 20px 50px 20px;
+}
 
+.more-about-hilton h2 {
+    margin-bottom: 50px;
+}
 
+.more-about-hilton .card-hotel {
+    position: relative;
+    min-height: 450px;
+    padding: 0px 20px 0px 20px;
+    word-wrap: break-word;
+    text-align: center;
+    overflow: hidden;
+}
 
+.more-about-hilton .card-hotel img {
+    max-width: 100%;
+    max-height: 100%;
+}
+    
+.more-about-hilton .card-hotel img:hover{
+    opacity:0.8;
+    -moz-opacity:0.8;
+    -khtml-opacity: 0.8;
+    filter: alpha(opacity=80) black;
+    background-color:#000;
+    cursor: pointer;
+}
+
+.more-about-hilton .card-hotel h4 {
+    position: absolute;
+    z-index: 2;
+    margin: auto;
+    width: 60%;
+    left: 50%;
+    top: 15%;
+    margin-left: -30%;
+}
+
+.about-hilton p {
+    font-size: 1.5em;
+}
 
 
 
