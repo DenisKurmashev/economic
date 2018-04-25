@@ -44,14 +44,14 @@
                 </a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="./index.html">Main</a></li>
-                    <li class="active"><a href="./booking.php">Book a room</a></li>
-                    <li><a href="./hotels.php">Our hotels</a></li>
+                    <li><a href="./booking.php">Book a room</a></li>
+                    <li class="active"><a href="./hotels.php">Our hotels</a></li>
                     <li><a href="./index.html#about-hilton" onclick="scrollToLink()">About us</a></li>
                 </ul>
                 <ul class="side-nav" id="mobile-demo">
                     <li><a href="./index.html">Main</a></li>
                     <li><a href="./booking.php">Book a room</a></li>
-                    <li><a href="./hotels.php">Our hotels</a></li>
+                    <li class="active"><a href="./hotels.php">Our hotels</a></li>
                     <li><a href="index.html#about-hilton" onclick="scrollToLink()">About us</a></li>
                 </ul>
             </div>
@@ -62,55 +62,39 @@
         <div class="row">
             <div class="col s12">
                 <div class="row center-align white-text">
-                    <h1>Room reservation</h1>
+                    <h1>The best hotels in the world</h1>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="full-width form-order">
-        <div class="container">
-            <div class="row center-align">
-                <h2>Fill in all the fields</h2>
-            </div>
-            <div class="row center-align">
-                <form action="./booking.php?form=true" method="post">
-                    <div class="row">
-                        <div class="col offset-s2 s8 input-field">
-                            <i class="material-icons prefix">perm_identity</i>
-                            <label for="firstName">Firstname</label>
-                            <input type="text" class="validate" id="firstName" name="firstName">
+    <div class="full-width hotels">
+        <div class="row">
+            <?php
+                require __DIR__ . '/config/config.php';
+
+                $hotels = R::findAll( 'hotels' );
+
+                foreach ($hotels as $hotel) {
+                    ?>
+                        <div class="col s4 hotel">
+                            <div class="hotel-img">
+                                <img src="">
+                            </div>
+                            <div class="hotel-name">
+                                <h5><?= $hotel->title; ?></h5>
+                            </div>
+                            <div class="hotel-desc">
+                                <p><?= $hotel->desc; ?></p>
+                            </div>
+                            <div class="hotel-stars">
+                                <span> <?= $hotel->stars; ?> <i class="material-icons">star_rate</i> </span>
+                                <span> <?= $hotel->rooms; ?> <i class="material-icons">hotel</i> </span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col offset-s2 s8 input-field">
-                            <i class="material-icons prefix">perm_identity</i>
-                            <label for="lastName">Lastname</label>
-                            <input type="text" class="validate" id="lastName" name="lastName">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col offset-s2 s8 input-field">
-                            <i class="material-icons prefix">local_parking</i>
-                            <label for="passport">Passport ID</label>
-                            <input type="text" class="validate" id="passport" name="passport">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col offset-s2 s8 input-field">
-                            <i class="material-icons prefix">date_range</i>
-                            <input type="date" class="validate" id="date" name="date">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col offset-s4 s4 input-field">
-                            <button class="btn waves-effect waves-light" id="submit" type="submit" name="action">To order
-                                <i class="material-icons right">send</i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
+                    <?php
+                }
+            ?>
         </div>
     </div>
 
