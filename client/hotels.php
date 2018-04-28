@@ -23,40 +23,17 @@
     <link rel="stylesheet" href="css/style.css">
     <title>Hotel chain</title> 
     <?php 
-        if ($state != null) {
+        if ( $state != null ) {
             ?>
                 <script type="text/javascript">
-                    alert( '<?= ($state ==  true ? 'Success' : $state); ?>' );
+                    alert( "<?= ($state ==  true ? 'Success' : $state); ?>" );
                 </script>
             <?php
         }
     ?>
 </head>
 <body>
-    <div class="navbar">
-        <nav>
-            <div class="nav-wrapper">
-                <a href="index.html" class="brand-logo">
-                    <img src="img/Logotype.svg" alt="Logotype">
-                </a>
-                <a href="#" class="button-collapse" data-activates="mobile-demo">
-                    <i class="material-icons">menu</i>
-                </a>
-                <ul class="right hide-on-med-and-down">
-                    <li><a href="./index.html">Main</a></li>
-                    <li><a href="./booking.php">Book a room</a></li>
-                    <li class="active"><a href="./hotels.php">Our hotels</a></li>
-                    <li><a href="./index.html#about-hilton" onclick="scrollToLink()">About us</a></li>
-                </ul>
-                <ul class="side-nav" id="mobile-demo">
-                    <li><a href="./index.html">Main</a></li>
-                    <li><a href="./booking.php">Book a room</a></li>
-                    <li class="active"><a href="./hotels.php">Our hotels</a></li>
-                    <li><a href="index.html#about-hilton" onclick="scrollToLink()">About us</a></li>
-                </ul>
-            </div>
-        </nav>	
-    </div>
+    <?php require __DIR__ . '/parts/header.php'; ?>
 
     <div class="full-width booking-start-screen">
         <div class="row">
@@ -77,19 +54,21 @@
 
                 foreach ($hotels as $hotel) {
                     ?>
-                        <div class="col s4 hotel">
-                            <div class="hotel-img">
-                                <img src="">
-                            </div>
-                            <div class="hotel-name">
-                                <h5><?= $hotel->title; ?></h5>
-                            </div>
-                            <div class="hotel-desc">
-                                <p><?= $hotel->desc; ?></p>
-                            </div>
-                            <div class="hotel-stars">
-                                <span> <?= $hotel->stars; ?> <i class="material-icons">star_rate</i> </span>
-                                <span> <?= $hotel->rooms; ?> <i class="material-icons">hotel</i> </span>
+                        <div class="col s4">
+                            <div class="hotel">
+                                <div class="hotel-img">
+                                    <img src="<?= $hotel->img ?>">
+                                </div>
+                                <div class="hotel-name">
+                                    <h5><?= $hotel->title; ?></h5>
+                                </div>
+                                <div class="hotel-desc">
+                                    <p><?= $hotel->desc; ?></p>
+                                </div>
+                                <div class="hotel-stars">
+                                    <span> <?= $hotel->stars; ?> <i class="material-icons">star_rate</i> </span>
+                                    <span> <?= $hotel->rooms; ?> <i class="material-icons">hotel</i> </span>
+                                </div>
                             </div>
                         </div>
                     <?php
@@ -110,7 +89,7 @@
                     <ul>
                         <li><a class="grey-text text-lighten-3" href="./booking.php">Book a room</a></li>
                         <li><a class="grey-text text-lighten-3" href="./hotels.php">Our hotels</a></li>
-                        <li><a class="grey-text text-lighten-3" href="index.html#about-hilton" onclick="scrollToLink()">About us</a></li>                        
+                        <li><a class="grey-text text-lighten-3" href="index.php#about-hilton" onclick="scrollToLink()">About us</a></li>                        
                     </ul>
                 </div>
             </div>

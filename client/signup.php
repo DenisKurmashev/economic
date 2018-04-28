@@ -1,86 +1,94 @@
-<?php // Example 26-5: signup.php
-  require_once 'header.php';
+<?php require __DIR__ . '/scripts/reg.php'; ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--Import Google Icon Font-->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Hotel chain</title> 
+</head>
+<body>
+    <?php require __DIR__ . '/parts/header.php'; ?>
 
-  echo <<<_END
-  <script>
-    function checkUser(user)
-    {
-      if (user.value == '')
-      {
-        O('info').innerHTML = ''
-        return
-      }
+    <div class="full-width white signup">
+        <div class="container center-align">
+            <div class="row center-align">
+                <h2>Sign Up</h2>
+            </div>
+            <form action="./signup.php?" method="post">
+                <div class="row">
+                    <div class="col offset-s3 s6 input-field">
+                        <i class="material-icons prefix">account_circle</i>
+                        <label for="username">Username</label>
+                        <input type="text" class="validate" id="username" name="username" value="<?= @$_POST['username']; ?>">
+                    </div>
+                    <div class="col offset-s3 s6 input-field">
+                        <i class="material-icons prefix">mail_outline</i>
+                        <label for="email">E-mail</label>
+                        <input type="email" class="validate" id="email" name="email" value="<?= @$_POST['email']; ?>">
+                    </div>
+                    <div class="col offset-s3 s6 input-field">
+                        <i class="material-icons prefix">security</i>
+                        <label for="password">Password</label>
+                        <input type="password" class="validate" id="password" name="password">
+                    </div>
+                    <div class="col offset-s3 s6 input-field">
+                        <i class="material-icons prefix">security</i>
+                        <label for="password-repeat">Password repeat</label>
+                        <input type="password" class="validate" id="password-repeat" name="password-repeat">
+                    </div>
+                    <div class="col offset-s3 s6 red-text">
+                        <p><?= @array_shift($errors); ?></p>
+                    </div>
+                    <div class="col offset-s3 s6 green-text">
+                        <p><?= @$success; ?></p>
+                    </div>
+                    <div class="col offset-s3 s6 input-field">
+                        <button class="btn waves-effect waves-light" id="signup" type="submit" name="signup">Sign Up 
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 
-      params  = "user=" + user.value
-      request = new ajaxRequest()
-      request.open("POST", "checkuser.php", true)
-      request.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
-      request.setRequestHeader("Content-length", params.length)
-      request.setRequestHeader("Connection", "close")
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Hilton - hotel chain.</h5>
+                    <p class="grey-text text-lighten-4">Only here you will spend your holiday unforgettably.</p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <h5 class="white-text">Links</h5>
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" href="./booking.php">Book a room</a></li>
+                        <li><a class="grey-text text-lighten-3" href="./hotels.php">Our hotels</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#about-hilton" onclick="scrollToLink()">About us</a></li>                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                © 2018 Powered by GreatSolution
+            </div>
+        </div>
+    </footer>
 
-      request.onreadystatechange = function()
-      {
-        if (this.readyState == 4)
-          if (this.status == 200)
-            if (this.responseText != null)
-              O('info').innerHTML = this.responseText
-      }
-      request.send(params)
-    }
-
-    function ajaxRequest()
-    {
-      try { var request = new XMLHttpRequest() }
-      catch(e1) {
-        try { request = new ActiveXObject("Msxml2.XMLHTTP") }
-        catch(e2) {
-          try { request = new ActiveXObject("Microsoft.XMLHTTP") }
-          catch(e3) {
-            request = false
-      } } }
-      return request
-    }
-  </script>
-  <div class='main'><h3>Please enter your details to sign up</h3>
-_END;
-
-  $error = $user = $pass = "";
-  if (isset($_SESSION['user'])) destroySession();
-
-  if (isset($_POST['user']))
-  {
-    $user = sanitizeString($_POST['user']);
-    $pass = sanitizeString($_POST['pass']);
-
-    if ($user == "" || $pass == "")
-      $error = "Not all fields were entered<br><br>";
-    else
-    {
-      $result = queryMysql("SELECT * FROM members WHERE user='$user'");
-
-      if ($result->num_rows)
-        $error = "That username already exists<br><br>";
-      else
-      {
-        queryMysql("INSERT INTO members VALUES('$user', '$pass')");
-        die("<h4>Account created</h4>Please Log in.<br><br>");
-      }
-    }
-  }
-
-  echo <<<_END
-    <form method='post' action='signup.php'>$error
-    <span class='fieldname'>Username</span>
-    <input type='text' maxlength='16' name='user' value='$user'
-      onBlur='checkUser(this)'><span id='info'></span><br>
-    <span class='fieldname'>Password</span>
-    <input type='text' maxlength='16' name='pass'
-      value='$pass'><br>
-_END;
-?>
-
-    <span class='fieldname'>&nbsp;</span>
-    <input type='submit' value='Sign up'>
-    </form></div><br>
-  </body>
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(".button-collapse").sideNav();
+        });
+    </script>
+</body>
 </html>

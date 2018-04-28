@@ -139,23 +139,48 @@
 
 /* hotels.php */
 .hotels {
-    display: table;
     background-color: #EAECED;
+    padding: 25px 0px;
 }
 
 .hotels .hotel {
-    display: table-cell;
     background-color: white;
     padding: 10px;
     margin-top: 50px;
 }
 
 .hotels .hotel-img {
-    border: 1px solid black;
     height: 200px;
 }
 
 .hotels .hotel-img img {
+    min-width: 100%;
     max-width: 100%;
     height: 100%;
+}
+
+/* signup.php */
+.signup {
+    padding: 50px 0px;
+}
+
+.signup i {
+    margin-top: 10px;
+}
+
+.signup i:last-child {
+    margin-top: 0px;
+}
+
+/* login.php */
+.login {
+    padding: 50px 0px;
+}
+
+.login i {
+    margin-top: 10px;
+}
+
+.login i:last-child {
+    margin-top: 0px;
 }

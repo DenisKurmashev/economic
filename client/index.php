@@ -1,11 +1,3 @@
-<?php
-require_once 'header.php';
-
-  echo "<br><span class='main'>Welcome to $appname,";
-
-  if ($loggedin) echo " $user, you are logged in.";
-  else           echo ' please sign up and/or log in to join in.';
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,39 +8,11 @@ require_once 'header.php';
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-
     <link rel="stylesheet" href="css/style.css">
     <title>Hotel chain</title> 
 </head>
 <body>
-    <div class="navbar">
-        <nav>
-            <div class="nav-wrapper">
-                <a href="index.html" class="brand-logo">
-                    <img src="img/Logotype.svg" alt="Logotype">
-                </a>
-                <a href="#" class="button-collapse" data-activates="mobile-demo">
-                    <i class="material-icons">menu</i>
-                </a>
-                <ul class="right hide-on-med-and-down">
-                    <li class="active"><a href="./index.html">Main</a></li>
-                    <li><a class="grey-text text-lighten-3" href="signup.php">Sign up</a></li>
-                    <li><a class="grey-text text-lighten-3" href="login.php">Log in</a></li>
-                    <li><a href="./booking.php">Book a room</a></li>
-                    <li><a href="./hotels.php">Our hotels</a></li>
-                    <li><a href="#about-hilton" onclick="scrollToLink()">About us</a></li>
-                </ul>
-                <ul class="side-nav" id="mobile-demo">
-                    <li><a class="grey-text text-lighten-3" href="./hotels.php">Sign up</a></li>
-                    <li><a class="grey-text text-lighten-3" href="./hotels.php">Log in</a></li>
-                    <li><a href="./index.html">Main</a></li>
-                    <li><a href="./booking.php">Book a room</a></li>
-                    <li><a href="./hotels.php">Our hotels</a></li>
-                    <li><a href="#about-hilton" onclick="scrollToLink()">About us</a></li>
-                </ul>
-            </div>
-        </nav>	
-    </div>
+    <?php require __DIR__ . '/parts/header.php'; ?>
 
     <div class="full-width start-screen">
         <div class="row">
@@ -154,8 +118,6 @@ require_once 'header.php';
                 <div class="col l4 offset-l2 s12">
                     <h5 class="white-text">Links</h5>
                     <ul>
-                        <li><a class="grey-text text-lighten-3" href="./hotels.php">Sign up</a></li>
-                        <li><a class="grey-text text-lighten-3" href="./hotels.php">Log in</a></li>
                         <li><a class="grey-text text-lighten-3" href="./booking.php">Book a room</a></li>
                         <li><a class="grey-text text-lighten-3" href="./hotels.php">Our hotels</a></li>
                         <li><a class="grey-text text-lighten-3" href="#about-hilton" onclick="scrollToLink()">About us</a></li>                        

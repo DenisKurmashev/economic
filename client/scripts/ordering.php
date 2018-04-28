@@ -6,20 +6,25 @@
             $firstName  = $_POST['firstName'];
             $lastName   = $_POST['lastName'];
             $passportId = $_POST['passport'];
-            $date       = $_POST['date'];
+            $datefrom   = $_POST['datefrom'];
+            $dateto     = $_POST['dateto'];
 
             if ( checkData() ) {
-                $order = R::findOne( 'hotelorders', 'date = ?', [$date] );
+                $order = R::findOne( 
+                    'hotelorders', 'datefrom BETWEEN ? AND ? OR dateto BETWEEN ? AND ?', 
+                    [$datefrom, $dateto, $datefrom, $dateto] 
+                );
 
                 if ($order != null) 
                     throw new Exception("This room id booked");
  
                 $order = R::dispense('hotelorders'); 
 
-                $order->firstname     = $firstName;
-                $order->lastname      = $lastName;
-                $order->passportid    = $passportId;
-                $order->date          = $date;
+                $order->firstname  = $firstName;
+                $order->lastname   = $lastName;
+                $order->passportid = $passportId;
+                $order->datefrom   = $datefrom;
+                $order->dateto     = $dateto;
 
                 R::store( $order );
 
@@ -40,8 +45,11 @@
         if ($_POST["passport"] == '')
             $errors[] = "Enter the passport ID!";
 
-        if ($_POST["date"] == '')
-            $errors[] = "Enter the date!";
+        if ($_POST["datefrom"] == '')
+            $errors[] = "Enter the datefrom!";
+
+        if ($_POST["dateto"] == '')
+            $errors[] = "Enter the dateto!";
         
         if (empty($errors)) 
             return true;
